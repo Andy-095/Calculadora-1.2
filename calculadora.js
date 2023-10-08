@@ -44,6 +44,12 @@ for (let i = 0; i < operaciones.length; i++) {
 }
 
 // Otros event listeners
+const box = document.querySelector("#pantalla-calculadora");
+setTimeout(() => {
+  box.classList.add("slide");
+}, 2000);
+const mainDisplay = document.querySelector("#main-display img");
+const secondDisplay = document.querySelector("#second-display img");
 document.getElementById("delete").addEventListener("click", eliminar);
 document.getElementById("M+").addEventListener("click", mPlus);
 document.getElementById("M-").addEventListener("click", mMenos);
@@ -53,6 +59,17 @@ document.getElementById("MC").addEventListener("click", mC);
 document.getElementById("CE").addEventListener("click", borrarPantalla);
 document.getElementById("C").addEventListener("click", reiniciarCalculadora);
 document.getElementById("igual").addEventListener("click", calcularResultado);
+
+// Agregar manejadores de eventos para los clics en los botones
+mainDisplay.addEventListener("click", () => {
+  mainDisplay.style.backgroundColor = "orange";
+  secondDisplay.style.backgroundColor = "#171717";
+});
+
+secondDisplay.addEventListener("click", () => {
+  mainDisplay.style.backgroundColor = "#171717";
+  secondDisplay.style.backgroundColor = "orange";
+});
 
 // Variables globales
 let valorPantallaSuperior = "";
