@@ -27,7 +27,7 @@ html {
   background-color: #171717;
   border-radius: 50px;
   width: 300px;
-  height: 730px;
+  height: 90%;
   display: grid;
   padding: 20px;
   grid-template-rows: auto auto auto;
@@ -72,7 +72,7 @@ html {
   font-size: 80px;
   padding: 10px;
   width: 280px;
-  height: 300px;
+  height: 35%;
   border-radius: 10px;
 }
 
@@ -140,7 +140,7 @@ html {
 .screen.hidden {
   opacity: 0; /* Pantalla oculta */
   pointer-events: none;
-  height: 0; /* Evitar eventos en la pantalla oculta */
+  height: 0px; /* Evitar eventos en la pantalla oculta */
 }
 
 .screen2-option {

@@ -70,11 +70,11 @@ document.getElementById("igual").addEventListener("click", calcularResultado);
 // Agregar manejadores de eventos para los clics en los botones
 mainDisplay.addEventListener("click", () => {
   mainDisplay.style.backgroundColor = "orange";
-  secondDisplay.style.backgroundColor = "#171717";
+  secondDisplay.style.backgroundColor = "gray";
 });
 
 secondDisplay.addEventListener("click", () => {
-  mainDisplay.style.backgroundColor = "#171717";
+  mainDisplay.style.backgroundColor = "gray";
   secondDisplay.style.backgroundColor = "orange";
 });
 
@@ -299,7 +299,7 @@ function realizarOperacion(operacion) {
           resultadoBinario = (numero1 + numero2).toString(2); //linea modificada
           console.log("llegue aqui3");
           break;
-        case "resta2":
+        case "restar":
           //valor2 = parseFloat(valorPantallaInferior);
           resultadoBinario = (numero1 - numero2).toString(2); //linea modificada
           break;
