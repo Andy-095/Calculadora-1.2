@@ -16,41 +16,60 @@
                 <div id="main-display"> <img style="background-color: orange;" src="./src/img/calculadora.png"> </div>
                 <div id="second-display"> <img src="./src/img/opciones.png"> </div>
             </div>
-            <div id="pantalla-calculadora">
-                <div id="pantalla-superior"></div>
-                <div id="pantalla-inferior">0</div>
+            <div class="screen hidden" id="screen1">
+                <div id="pantalla-calculadora">
+                    <div id="pantalla-superior"></div>
+                    <div id="pantalla-inferior">0</div>
+                </div>
+                <div id="botones">
+                    <div id="M+" class="boton-arriba">M+</div>
+                    <div id="M-" class="boton-arriba">M-</div>
+                    <div id="MS" class="boton-arriba">MS</div>
+                    <div id="MR" class="boton-arriba">MR</div>
+                    <div id="CE" class="boton">CE</div>
+                    <div id="C" class="boton">C</div>
+                    <div id="delete" class="boton">⌫</div>
+                    <div id="division" class="boton-derecho">÷</div>
+                    <div id="siete" class="boton">7</div>
+                    <div id="ocho" class="boton">8</div>
+                    <div id="nueve" class="boton">9</div>
+                    <div id="multiplicacion" class="boton-derecho">×</div>
+                    <div id="cuatro" class="boton">4</div>
+                    <div id="cinco" class="boton">5</div>
+                    <div id="seis" class="boton">6</div>
+                    <div id="suma" class="boton-derecho">+</div>
+                    <div id="uno" class="boton">1</div>
+                    <div id="dos" class="boton">2</div>
+                    <div id="tres" class="boton">3</div>
+                    <div id="resta" class="boton-derecho">-</div>
+                    <div id="MC" class="boton">MC</div>
+                    <div id="cero" class="boton">0</div>
+                    <div id="puntoDecimal" class="boton">.</div>
+                    <div id="igual" class="boton-derecho">=</div>
+                    <div id="x2" class="boton">x²</div>
+                    <div id="x3" class="boton">x³</div>
+                    <div id="xy" class="boton">x^y</div>
+                    <div id="1divX" class="boton">1/x</div>
+                </div>
             </div>
-            <div id="botones">
-                <div id="M+" class="boton-arriba">M+</div>
-                <div id="M-" class="boton-arriba">M-</div>
-                <div id="MS" class="boton-arriba">MS</div>
-                <div id="MR" class="boton-arriba">MR</div>
-                <div id="CE" class="boton">CE</div>
-                <div id="C" class="boton">C</div>
-                <div id="delete" class="boton">⌫</div>
-                <div id="division" class="boton-derecho">÷</div>
-                <div id="siete" class="boton">7</div>
-                <div id="ocho" class="boton">8</div>
-                <div id="nueve" class="boton">9</div>
-                <div id="multiplicacion" class="boton-derecho">×</div>
-                <div id="cuatro" class="boton">4</div>
-                <div id="cinco" class="boton">5</div>
-                <div id="seis" class="boton">6</div>
-                <div id="suma" class="boton-derecho">+</div>
-                <div id="uno" class="boton">1</div>
-                <div id="dos" class="boton">2</div>
-                <div id="tres" class="boton">3</div>
-                <div id="resta" class="boton-derecho">-</div>
-                <div id="MC" class="boton">MC</div>
-                <div id="cero" class="boton">0</div>
-                <div id="puntoDecimal" class="boton">.</div>
-                <div id="igual" class="boton-derecho">=</div>
-                <div id="x2" class="boton">x²</div>
-                <div id="x3" class="boton">x³</div>
-                <div id="xy" class="boton">x^y</div>
-                <div id="1divX" class="boton">1/x</div>
+            <div class="screen hidden" id="screen2">
+                <div class="screen2-option" id="binari-sum"><img src="./src/img/codigo-binario.png" />
+                    <p>Binario</p>
+                </div>
+            </div>
+            <div class="screen " id="sumaBinaria">
+                <h1>Calculadora Binaria</h1>
+                <input type="text" id="numero1" placeholder="Número binario 1">
+                <input type="text" id="numero2" placeholder="Número binario 2">
+                <button id="sumar">Sumar</button>
+                <button id="restar">Restar</button>
+                <button id="multiplicar">Multiplicar</button>
+                <button id="dividir">Dividir</button>
+                <div id="resultado"></div>
             </div>
         </div>
+
+
     </section>
 </body>
 <script src="./calculadora.js"></script>

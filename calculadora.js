@@ -44,8 +44,11 @@ for (let i = 0; i < operaciones.length; i++) {
 }
 
 // Otros event listeners
+const screen1 = document.getElementById("screen1");
+const screen2 = document.getElementById("screen2");
 const mainDisplay = document.querySelector("#main-display img");
 const secondDisplay = document.querySelector("#second-display img");
+const binariSum = document.getElementById("binari-sum");
 document.getElementById("delete").addEventListener("click", eliminar);
 document.getElementById("M+").addEventListener("click", mPlus);
 document.getElementById("M-").addEventListener("click", mMenos);
@@ -65,6 +68,24 @@ mainDisplay.addEventListener("click", () => {
 secondDisplay.addEventListener("click", () => {
   mainDisplay.style.backgroundColor = "#171717";
   secondDisplay.style.backgroundColor = "orange";
+});
+
+mainDisplay.addEventListener("click", () => {
+  screen1.classList.remove("hidden"); // Ocultar pantalla 1
+  screen2.classList.add("hidden");
+  binariSum.classList.add("hidden");
+});
+
+secondDisplay.addEventListener("click", () => {
+  screen1.classList.add("hidden"); // Mostrar pantalla 1
+  screen2.classList.remove("hidden");
+  binariSum.classList.add("hidden");
+});
+
+binariSum.addEventListener("click", () => {
+  screen1.classList.add("hidden"); // Mostrar pantalla 1
+  screen2.classList.add("hidden");
+  binariSum.classList.remove("hidden");
 });
 
 // Variables globales

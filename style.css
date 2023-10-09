@@ -6,7 +6,7 @@
 /* Establecer el estilo base para el cuerpo y el HTML */
 body,
 html {
-  background: linear-gradient(145deg, #dbd9d9, #b9b7b7);
+  background: linear-gradient(42deg, #ebebeb, #17171752);
   height: 100%;
   margin: 0;
   display: flex;
@@ -19,6 +19,7 @@ html {
   justify-content: center;
   align-items: center;
   height: 100%;
+  overflow: hidden;
 }
 
 /* Contenedor del cuerpo de la calculadora */
@@ -30,13 +31,15 @@ html {
   display: grid;
   padding: 20px;
   grid-template-rows: auto auto auto;
-  border: 4px #ffffff solid;
+  border: 6px #ffffff solid;
   box-shadow: 10px 10px 30px #7b7a7a, -10px -10px 30px #ffffff;
 }
 
 #opciones {
   display: inline-flex;
   justify-content: center;
+  height: 30px;
+  width: 300px;
 }
 #opciones img {
   margin-left: 10px;
@@ -46,9 +49,14 @@ html {
   border-radius: 5px;
 }
 
+#main-display {
+  cursor: pointer;
+}
+
 #second-display img {
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 /* Pantalla principal de la calculadora */
@@ -57,8 +65,8 @@ html {
   grid-template-rows: auto auto;
   align-items: end;
   color: white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: lighter;
   justify-content: end;
   font-size: 80px;
@@ -85,6 +93,7 @@ html {
 #botones {
   border-top: 1px dimgray solid;
   padding-top: 5px;
+  width: 300px;
   display: grid;
   align-items: center;
   grid-template-columns: auto auto auto auto;
@@ -121,4 +130,41 @@ html {
 
 .boton-derecho {
   font-size: 30px;
+}
+
+.screen {
+  transition: opacity 0.2s ease;
+  height: 700px;
+}
+
+.screen.hidden {
+  opacity: 0; /* Pantalla oculta */
+  pointer-events: none;
+  height: 0; /* Evitar eventos en la pantalla oculta */
+}
+
+.screen2-option {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  height: 75px;
+  width: 60px;
+}
+
+#screen2 img {
+  height: 40px;
+  width: 40px;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  border: 5px whitesmoke solid;
+}
+
+#screen2 p {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 2px;
+  font-size: 15px;
+  color: ghostwhite;
 }
