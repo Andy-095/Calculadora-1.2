@@ -216,9 +216,10 @@ h1 {
   font-size: 20px;
   white-space: pre-wrap;
   word-wrap: break-word;
-
+  overflow-x: auto;
   background-color: #8f8c8c;
   border-radius: 6px;
   width: 280px;
   max-width: 280px;
+  user-select: auto;
 }
