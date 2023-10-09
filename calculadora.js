@@ -48,7 +48,8 @@ const screen1 = document.getElementById("screen1");
 const screen2 = document.getElementById("screen2");
 const mainDisplay = document.querySelector("#main-display img");
 const secondDisplay = document.querySelector("#second-display img");
-const binariSum = document.getElementById("binari-sum");
+const binariSumOPtion = document.getElementById("binari-sum");
+const binariSum = document.getElementById("sumaBinaria");
 document.getElementById("delete").addEventListener("click", eliminar);
 document.getElementById("M+").addEventListener("click", mPlus);
 document.getElementById("M-").addEventListener("click", mMenos);
@@ -82,7 +83,7 @@ secondDisplay.addEventListener("click", () => {
   binariSum.classList.add("hidden");
 });
 
-binariSum.addEventListener("click", () => {
+binariSumOPtion.addEventListener("click", () => {
   screen1.classList.add("hidden"); // Mostrar pantalla 1
   screen2.classList.add("hidden");
   binariSum.classList.remove("hidden");
