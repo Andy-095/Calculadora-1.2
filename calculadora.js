@@ -96,6 +96,17 @@ binariSumOPtion.addEventListener("click", () => {
   binariSum.classList.remove("hidden");
 });
 
+//Solo aceptar 1 y 0 en los inputs y cambiar cualquier otro dato por "".
+numero1Input.addEventListener("input", function () {
+  let inputValue = this.value;
+  this.value = inputValue.replace(/[^01]/g, "");
+});
+
+numero1Input.addEventListener("input", function () {
+  let inputValue = this.value;
+  this.value = inputValue.replace(/[^01]/g, "");
+});
+
 sumarButton.addEventListener("click", realizarOperacion("sumar"));
 restarButton.addEventListener("click", realizarOperacion("restar"));
 multiplicarButton.addEventListener("click", realizarOperacion("multiplicar"));
@@ -289,42 +300,33 @@ function realizarOperacion(operacion) {
   return function () {
     const numero1 = numero1Input.value;
     const numero2 = numero2Input.value;
-    console.log("llegue aqui");
-    if (esBinarioValido(numero1) && esBinarioValido(numero2)) {
-      let resultadoBinario = "";
-      console.log("llegue aqui2");
-      switch (operacion) {
-        case "sumar":
-          //valor2 = parseFloat(valorPantallaInferior);
-          resultadoBinario = (numero1 + numero2).toString(2); //linea modificada
-          console.log("llegue aqui3");
-          break;
-        case "restar":
-          //valor2 = parseFloat(valorPantallaInferior);
-          resultadoBinario = (numero1 - numero2).toString(2); //linea modificada
-          break;
-        case "multiplicar":
-          //valor2 = parseFloat(valorPantallaInferior);
-          resultadoBinario = (numero1 * numero2).toString(2); //linea modificada
-          break;
-        case "dividir":
-          //valor2 = parseFloat(valorPantallaInferior);
-          if (numero2 !== 0) {
-            resultadoBinario = Math.floor(numero1 / numero2).toString(2); //linea modificada
-          } else {
-            resultadoBinario = "Error"; //linea modificada
-          }
-          break;
-        default:
-          break;
-      }
-      resultadoDiv.textContent = `${resultadoBinario}`;
-    } else {
-      resultadoDiv.textContent = "Por favor, ingresa números binarios válidos.";
+    let resultadoBinario = "";
+    switch (operacion) {
+      case "sumar":
+        //valor2 = parseFloat(valorPantallaInferior);
+        resultadoBinario = (numero1 + numero2).toString(2); //linea modificada
+        console.log("llegue aqui3");
+        break;
+      case "restar":
+        //valor2 = parseFloat(valorPantallaInferior);
+        resultadoBinario = (numero1 - numero2).toString(2); //linea modificada
+        break;
+      case "multiplicar":
+        //valor2 = parseFloat(valorPantallaInferior);
+        resultadoBinario = (numero1 * numero2).toString(2); //linea modificada
+        break;
+      case "dividir":
+        //valor2 = parseFloat(valorPantallaInferior);
+        if (numero2 !== 0) {
+          resultadoBinario = Math.floor(numero1 / numero2).toString(2); //linea modificada
+        } else {
+          resultadoBinario = "Error"; //linea modificada
+        }
+        break;
+      default:
+        resultadoDiv.textContent = "Algun cambo esta vacio";
+        break;
     }
+    resultadoDiv.textContent = `${resultadoBinario}`;
   };
-}
-
-function esBinarioValido(numero) {
-  return /^[01]+$/.test(numero);
 }
