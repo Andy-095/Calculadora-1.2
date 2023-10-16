@@ -57,6 +57,11 @@ const restarButton = document.getElementById("restar");
 const multiplicarButton = document.getElementById("multiplicar");
 const dividirButton = document.getElementById("dividir");
 const resultadoDiv = document.getElementById("resultado");
+const fechaOperaciones = document.getElementById("fechasOperaciones");
+const SumaFechas = document.getElementById("calculadoraFechas");
+const opcionesFechas = document.getElementById("opcionesFechas");
+const operacionFechas = document.getElementById("date-sum");
+opcionesFechas.addEventListener("change", mostrarOpciones);
 document.getElementById("delete").addEventListener("click", eliminar);
 document.getElementById("M+").addEventListener("click", mPlus);
 document.getElementById("M-").addEventListener("click", mMenos);
@@ -82,18 +87,21 @@ mainDisplay.addEventListener("click", () => {
   screen1.classList.remove("hidden"); // Ocultar pantalla 1
   screen2.classList.add("hidden");
   binariSum.classList.add("hidden");
+  SumaFechas.classList.add("hidden");
 });
 
 secondDisplay.addEventListener("click", () => {
   screen1.classList.add("hidden"); // Mostrar pantalla 1
   screen2.classList.remove("hidden");
   binariSum.classList.add("hidden");
+  SumaFechas.classList.add("hidden");
 });
 
 binariSumOPtion.addEventListener("click", () => {
   screen1.classList.add("hidden"); // Mostrar pantalla 1
   screen2.classList.add("hidden");
   binariSum.classList.remove("hidden");
+  SumaFechas.classList.add("hidden");
 });
 
 //Solo aceptar 1 y 0 en los inputs y cambiar cualquier otro dato por "".
@@ -105,6 +113,13 @@ numero1Input.addEventListener("input", function () {
 numero1Input.addEventListener("input", function () {
   let inputValue = this.value;
   this.value = inputValue.replace(/[^01]/g, "");
+});
+
+operacionFechas.addEventListener("click", () => {
+  screen1.classList.add("hidden");
+  screen2.classList.add("hidden");
+  binariSum.classList.add("hidden");
+  SumaFechas.classList.remove("hidden"); // Mostrar pantalla Operaciones con fechas
 });
 
 sumarButton.addEventListener("click", realizarOperacion("sumar"));
@@ -329,4 +344,41 @@ function realizarOperacion(operacion) {
     }
     resultadoDiv.textContent = `${resultadoBinario}`;
   };
+}
+
+function mostrarOpciones() {
+  const difFechas = document.getElementById("difFechas");
+  const sumFechas = document.getElementById("sumFechas");
+  var años = document.getElementById("años");
+  var meses = document.getElementById("meses");
+  var dias = document.getElementById("dias");
+  switch (opcionesFechas.value) {
+    case "Diferencia entre fechas":
+      sumFechas.classList.add("hidden");
+      difFechas.classList.remove("hidden");
+      break;
+    case "Sumar o restas días":
+      for (var i = 1; i <= 999; i++) {
+        var optionA = document.createElement("option");
+        var optionM = document.createElement("option");
+        var optionD = document.createElement("option");
+        optionA.text = i;
+        optionA.value = i;
+        optionM.text = i;
+        optionM.value = i;
+        optionD.text = i;
+        optionD.value = i;
+        años.appendChild(optionA);
+        meses.appendChild(optionM);
+        dias.appendChild(optionD);
+      }
+      sumFechas.classList.remove("hidden");
+      difFechas.classList.addal("hidden");
+      difFechas.classList.add("hidden");
+
+      break;
+
+    default:
+      break;
+  }
 }

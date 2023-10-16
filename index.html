@@ -16,7 +16,7 @@
                 <div id="main-display"> <img style="background-color: orange;" src="./src/img/calculadora.png"> </div>
                 <div id="second-display"> <img style="background-color: gray;" src="./src/img/opciones.png"> </div>
             </div>
-            <div class="screen" id="screen1">
+            <div class="screen hidden" id="screen1">
                 <div id="pantalla-calculadora">
                     <div id="pantalla-superior"></div>
                     <div id="pantalla-inferior">0</div>
@@ -56,6 +56,9 @@
                 <div class="screen2-option" id="binari-sum"><img src="./src/img/codigo-binario.png" />
                     <p>Binario</p>
                 </div>
+                <div class="screen2-option" id="date-sum"><img src="./src/img/date-sum.png" />
+                    <p>Suma Fechas</p>
+                </div>
             </div>
             <div class="screen hidden" id="sumaBinaria">
                 <h1>Calculadora Binaria</h1>
@@ -69,10 +72,49 @@
                     <button id="dividir">Dividir</button>
                 </div>
             </div>
-            <div class=" screen hidden" id="calculadoraFechas">
+            <div class="screen" id="calculadoraFechas">
                 <h1>Cálculo de fecha</h1>
+                <section class="calculoFechas">
+                    <select id="opcionesFechas">
+                        <option value="Diferencia entre fechas">Diferencia entre fechas</option>
+                        <option value="Sumar o restas días">Sumar o restas días</option>
+                    </select>
+                </section>
+                <section id="fechasOperaciones">
+                    <section class="screen hidden" id="difFechas">
+                        <div>
+                            <p>Desde</p>
+                            <input type="date">
+                            <p>Hasta</p>
+                            <input type="date">
+                            <div id="resultFecha">
+                                <label id="resultado">Resultado</label>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="screen" id="sumFechas">
+                        <div id="inputFecha">
+                            <p>Desde</p>
+                            <input type="date">
+                        </div>
+                        <div id="sumarRestar">
+                            <input type="radio"><label>Sumar</label>
+                            <input type="radio"><label>Restar</label>
+                        </div>
+                        <select id="años">
+                        </select>
+                        <select id="meses">
+                        </select>
+                        <select id="dias">
+                        </select>
+                        <div id="resultFecha">
+                            <label id="resultado">Resultado</label>
+                        </div>
             </div>
-        </div>
+    </section>
+    </section>
+    </div>
+    </div>
 
 
     </section>
