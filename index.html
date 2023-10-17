@@ -81,37 +81,44 @@
                     </select>
                 </section>
                 <section id="fechasOperaciones">
-                    <section class="screen hidden" id="difFechas">
+                    <section class="screen" id="difFechas">
                         <div>
                             <p>Desde</p>
-                            <input type="date">
+                            <input type="date" id="fechaDesde">
                             <p>Hasta</p>
-                            <input type="date">
+                            <input type="date" id="fechaHasta">
                             <div id="resultFecha">
-                                <label id="resultado">Resultado</label>
+                                <label id="resultadoDifFecha">Resultado</label>
                             </div>
                         </div>
                     </section>
-                    <section class="screen" id="sumFechas">
+
+                    <section class="screen hidden" id="sumFechas">
                         <div id="inputFecha">
                             <p>Desde</p>
-                            <input type="date">
+                            <input type="date" id="fechaDesdeSum">
                         </div>
                         <div id="sumarRestar">
-                            <input type="radio"><label>Sumar</label>
-                            <input type="radio"><label>Restar</label>
+                            <input type="radio" id="sumarFecha" name="SumaResta" checked
+                                onchange='sumaRestaFechas()'><label>Sumar</label>
+                            <input type="radio" id="restarFecha" name="SumaResta"
+                                onchange='sumaRestaFechas()'><label>Restar</label>
                         </div>
-                        <select id="años">
+                        <label>Años</label>
+                        <select id="años" onchange='sumaRestaFechas()'>
                         </select>
-                        <select id="meses">
+                        <label>Meses</label>
+                        <select id="meses" onchange='sumaRestaFechas()'>
                         </select>
-                        <select id="dias">
+                        <label>Días</label>
+                        <select id="dias" onchange='sumaRestaFechas()'>
                         </select>
                         <div id="resultFecha">
-                            <label id="resultado">Resultado</label>
+                            <label id="resultadoSumaResta">Resultado</label>
                         </div>
+                    </section>
             </div>
-    </section>
+
     </section>
     </div>
     </div>

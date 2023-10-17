@@ -57,7 +57,6 @@ const restarButton = document.getElementById("restar");
 const multiplicarButton = document.getElementById("multiplicar");
 const dividirButton = document.getElementById("dividir");
 const resultadoDiv = document.getElementById("resultado");
-const fechaOperaciones = document.getElementById("fechasOperaciones");
 const SumaFechas = document.getElementById("calculadoraFechas");
 const opcionesFechas = document.getElementById("opcionesFechas");
 const operacionFechas = document.getElementById("date-sum");
@@ -71,7 +70,14 @@ document.getElementById("MC").addEventListener("click", mC);
 document.getElementById("CE").addEventListener("click", borrarPantalla);
 document.getElementById("C").addEventListener("click", reiniciarCalculadora);
 document.getElementById("igual").addEventListener("click", calcularResultado);
-
+document.getElementById("fechaDesde").onchange = function () {
+  // Aquí puedes ejecutar tu función personalizada
+  diferenciaFechas();
+};
+document.getElementById("fechaHasta").onchange = function () {
+  // Aquí puedes ejecutar tu función personalizada
+  diferenciaFechas();
+};
 // Agregar manejadores de eventos para los clics en los botones
 mainDisplay.addEventListener("click", () => {
   mainDisplay.style.backgroundColor = "orange";
@@ -120,6 +126,9 @@ operacionFechas.addEventListener("click", () => {
   screen2.classList.add("hidden");
   binariSum.classList.add("hidden");
   SumaFechas.classList.remove("hidden"); // Mostrar pantalla Operaciones con fechas
+  var today = new Date().toISOString().split("T")[0];
+  document.getElementById("fechaDesde").value = today;
+  document.getElementById("fechaHasta").value = today;
 });
 
 sumarButton.addEventListener("click", realizarOperacion("sumar"));
@@ -358,7 +367,7 @@ function mostrarOpciones() {
       difFechas.classList.remove("hidden");
       break;
     case "Sumar o restas días":
-      for (var i = 1; i <= 999; i++) {
+      for (var i = 0; i <= 999; i++) {
         var optionA = document.createElement("option");
         var optionM = document.createElement("option");
         var optionD = document.createElement("option");
@@ -373,12 +382,68 @@ function mostrarOpciones() {
         dias.appendChild(optionD);
       }
       sumFechas.classList.remove("hidden");
-      difFechas.classList.addal("hidden");
       difFechas.classList.add("hidden");
+      var today = new Date().toISOString().split("T")[0];
+      document.getElementById("fechaDesdeSum").value = today;
 
       break;
-
     default:
       break;
+  }
+}
+
+function sumaRestaFechas() {
+  var fecha = new Date(); // Inicializa la fecha como un objeto de fecha
+  var fechaSeleccionada = document.getElementById("fechaDesdeSum").value;
+  var resultado = document.getElementById("resultadoSumaResta");
+  var sumarCheckbox = document.getElementById("sumarFecha");
+  var restarCheckbox = document.getElementById("restarFecha");
+
+  // Convertimos la cadena de fecha en un objeto de fecha
+  fecha = new Date(fechaSeleccionada);
+  var año = document.getElementById("años");
+  var mes = document.getElementById("meses");
+  var dia = document.getElementById("dias");
+
+  var añoSeleccionado = parseInt(año.value);
+  var mesesSeleccionado = parseInt(mes.value);
+  var diasSeleccionado = parseInt(dia.value);
+
+  if (sumarCheckbox.checked) {
+    fecha.setFullYear(fecha.getFullYear() + añoSeleccionado);
+    fecha.setMonth(fecha.getMonth() + mesesSeleccionado);
+    fecha.setDate(fecha.getDate() + diasSeleccionado);
+  } else if (restarCheckbox.checked) {
+    fecha.setFullYear(fecha.getFullYear() - añoSeleccionado);
+    fecha.setMonth(fecha.getMonth() - mesesSeleccionado);
+    fecha.setDate(fecha.getDate() - diasSeleccionado);
+  }
+
+  var resultadoFinal =
+    fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
+  resultado.innerHTML = resultadoFinal;
+}
+
+function diferenciaFechas() {
+  var fechaDesdeSeleccionada = document.getElementById("fechaDesde").value;
+  var fechaHastaSeleccionada = document.getElementById("fechaHasta").value;
+  var resultado = document.getElementById("resultadoDifFecha");
+
+  var fechaDesde = new Date(fechaDesdeSeleccionada);
+  var fechaHasta = new Date(fechaHastaSeleccionada);
+
+  var diffTiempo = Math.abs(fechaHasta.getTime() - fechaDesde.getTime());
+  var diffDias = Math.floor(diffTiempo / (1000 * 3600 * 24));
+  var difEnDias = diffDias;
+  if (diffDias === 0) {
+    resultado.innerHTML = "Mismas fechas";
+  } else {
+    var diffAños = Math.floor(diffDias / 365);
+    diffDias %= 365;
+    var diffMeses = Math.floor(diffDias / 30);
+    diffDias %= 30;
+    resultado.innerHTML =
+      diffAños + " años, " + diffMeses + " meses, " + diffDias + " días";
+    resultado.innerHTML += "\n" + difEnDias + " días";
   }
 }
