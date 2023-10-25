@@ -1,6 +1,12 @@
 // Obtener elementos del DOM
 const pantallaInferior = document.getElementById("pantalla-inferior");
 const pantallaSuperior = document.getElementById("pantalla-superior");
+const pantallaSuperiorLongitud = document.getElementById(
+  "pantalla-superior-longitudes"
+);
+const pantallaInferiorLongitud = document.getElementById(
+  "pantalla-inferior-longitudes"
+);
 document.getElementById("x2").addEventListener("click", elevarAlCuadrado);
 document.getElementById("x3").addEventListener("click", elevarAlCubo);
 document.getElementById("xy").addEventListener("click", elevarALaPotencia);
@@ -17,6 +23,19 @@ const numeros = [
   "ocho",
   "nueve",
 ];
+
+const numerosLen = [
+  "cero-len",
+  "uno-len",
+  "dos-len",
+  "tres-len",
+  "cuatro-len",
+  "cinco-len",
+  "seis-len",
+  "siete-len",
+  "ocho-len",
+  "nueve-len",
+];
 const operaciones = [
   { nombre: "suma", signo: "+" },
   { nombre: "resta", signo: "-" },
@@ -27,7 +46,11 @@ const operaciones = [
 // Agregar event listeners para los botones de números
 for (let i = 0; i < numeros.length; i++) {
   const boton = document.getElementById(numeros[i]);
-  boton.addEventListener("click", () => agregarNumero(i));
+  boton.addEventListener("click", () => agregarNumero(i, "mainScreen"));
+}
+for (let i = 0; i < numeros.length; i++) {
+  const boton = document.getElementById(numerosLen[i]);
+  boton.addEventListener("click", () => agregarNumero(i, "lenScreen"));
 }
 
 // Agregar event listener para el punto decimal
@@ -59,15 +82,23 @@ const dividirButton = document.getElementById("dividir");
 const resultadoDiv = document.getElementById("resultado");
 const SumaFechas = document.getElementById("calculadoraFechas");
 const opcionesFechas = document.getElementById("opcionesFechas");
+const convertLength = document.getElementById("calculadoraLongitudes");
+const botonlongitud = document.getElementById("convert-long");
 const operacionFechas = document.getElementById("date-sum");
 opcionesFechas.addEventListener("change", mostrarOpciones);
 document.getElementById("delete").addEventListener("click", eliminar);
+document.getElementById("delete-len").addEventListener("click", eliminar);
 document.getElementById("M+").addEventListener("click", mPlus);
 document.getElementById("M-").addEventListener("click", mMenos);
 document.getElementById("MS").addEventListener("click", mS);
 document.getElementById("MR").addEventListener("click", mR);
 document.getElementById("MC").addEventListener("click", mC);
-document.getElementById("CE").addEventListener("click", borrarPantalla);
+document.getElementById("CE").addEventListener("click", function () {
+  borrarPantalla("screen1");
+});
+document.getElementById("CE-len").addEventListener("click", function () {
+  borrarPantalla("convertLength");
+});
 document.getElementById("C").addEventListener("click", reiniciarCalculadora);
 document.getElementById("igual").addEventListener("click", calcularResultado);
 document.getElementById("fechaDesde").onchange = function () {
@@ -94,6 +125,7 @@ mainDisplay.addEventListener("click", () => {
   screen2.classList.add("hidden");
   binariSum.classList.add("hidden");
   SumaFechas.classList.add("hidden");
+  convertLength.classList.add("hidden");
 });
 
 secondDisplay.addEventListener("click", () => {
@@ -101,6 +133,7 @@ secondDisplay.addEventListener("click", () => {
   screen2.classList.remove("hidden");
   binariSum.classList.add("hidden");
   SumaFechas.classList.add("hidden");
+  convertLength.classList.add("hidden");
 });
 
 binariSumOPtion.addEventListener("click", () => {
@@ -108,6 +141,15 @@ binariSumOPtion.addEventListener("click", () => {
   screen2.classList.add("hidden");
   binariSum.classList.remove("hidden");
   SumaFechas.classList.add("hidden");
+  convertLength.classList.add("hidden");
+});
+
+botonlongitud.addEventListener("click", () => {
+  screen1.classList.add("hidden"); // Mostrar pantalla 1
+  screen2.classList.add("hidden");
+  binariSum.classList.add("hidden");
+  SumaFechas.classList.add("hidden");
+  convertLength.classList.remove("hidden");
 });
 
 //Solo aceptar 1 y 0 en los inputs y cambiar cualquier otro dato por "".
@@ -145,25 +187,51 @@ let operacionRealizada = "";
 let resultadoOperacion = 0;
 let memoria = 0;
 
-function revisarPantalla() {
-  if (valorPantallaInferior.length <= 6) {
-    pantallaInferior.style.fontSize = "80px";
-  } else if (valorPantallaInferior.length <= 8) {
-    pantallaInferior.style.fontSize = "65px";
-  } else if (valorPantallaInferior.length <= 10) {
-    pantallaInferior.style.fontSize = "55px";
-  } else if (valorPantallaInferior.length <= 12) {
-    pantallaInferior.style.fontSize = "45px";
-  } else {
-    pantallaInferior.style.fontSize = "35px";
+function revisarPantalla(screen) {
+  switch (screen) {
+    case "screen1":
+      if (valorPantallaInferior.length <= 6) {
+        pantallaInferior.style.fontSize = "80px";
+      } else if (valorPantallaInferior.length <= 8) {
+        pantallaInferior.style.fontSize = "65px";
+      } else if (valorPantallaInferior.length <= 10) {
+        pantallaInferior.style.fontSize = "55px";
+      } else if (valorPantallaInferior.length <= 12) {
+        pantallaInferior.style.fontSize = "45px";
+      } else {
+        pantallaInferior.style.fontSize = "35px";
+      }
+      break;
+    case "convertLength":
+      if (valorPantallaInferior.length <= 6) {
+        pantallaSuperiorLongitud.style.fontSize = "70px";
+      } else if (valorPantallaInferior.length <= 8) {
+        pantallaSuperiorLongitud.style.fontSize = "65px";
+      } else if (valorPantallaInferior.length <= 10) {
+        pantallaSuperiorLongitud.style.fontSize = "55px";
+      } else {
+        pantallaSuperiorLongitud.style.fontSize = "45px";
+      }
+      break;
+
+    default:
+      break;
   }
 }
 
-function agregarNumero(numero) {
-  if (valorPantallaInferior.length < 12) {
-    valorPantallaInferior += numero;
-    revisarPantalla();
-    pantallaInferior.innerHTML = valorPantallaInferior;
+function agregarNumero(numero, screen) {
+  if (screen == "mainScreen") {
+    if (valorPantallaInferior.length < 12) {
+      valorPantallaInferior += numero;
+      revisarPantalla("screen1");
+      pantallaInferior.innerHTML = valorPantallaInferior;
+    }
+  } else if (screen == "lenScreen") {
+    if (valorPantallaInferior.length < 12) {
+      valorPantallaInferior += numero;
+      revisarPantalla("convertLength");
+      pantallaSuperiorLongitud.innerHTML = valorPantallaInferior;
+    }
   }
 }
 
@@ -199,9 +267,16 @@ function mC() {
   memoria = 0;
 }
 
-function borrarPantalla() {
-  valorPantallaInferior = "";
-  pantallaInferior.innerHTML = "0";
+function borrarPantalla(screen) {
+  console.log("hola");
+  if (screen === "screen1") {
+    valorPantallaInferior = "";
+    pantallaInferior.innerHTML = "0";
+  } else if (screen === "convertLength") {
+    console.log("hola2");
+    valorPantallaInferior = "";
+    pantallaSuperiorLongitud.innerHTML = "0";
+  }
 }
 
 function eliminar() {

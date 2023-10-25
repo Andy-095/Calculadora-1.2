@@ -59,6 +59,9 @@
                 <div class="screen2-option" id="date-sum"><img src="./src/img/date-sum.png" />
                     <p>Suma Fechas</p>
                 </div>
+                <div class="screen2-option" id="convert-long"><img src="./src/img/icon_longitud.png" />
+                    <p>Longitudes</p>
+                </div>
             </div>
             <div class="screen hidden" id="sumaBinaria">
                 <h1>Calculadora Binaria</h1>
@@ -72,7 +75,7 @@
                     <button id="dividir">Dividir</button>
                 </div>
             </div>
-            <div class="screen" id="calculadoraFechas">
+            <div class="screen hidden" id="calculadoraFechas">
                 <h1>Cálculo de fecha</h1>
                 <section class="calculoFechas">
                     <select id="opcionesFechas">
@@ -117,6 +120,58 @@
                             <label id="resultadoSumaResta">Resultado</label>
                         </div>
                     </section>
+            </div>
+            <div class="screen" id="calculadoraLongitudes">
+                <div id="pantalla-calculadora">
+                    <div id="pantalla-superior-longitudes">0</div>
+                    <select>
+                        <option value="nanometros">Nanómetros</option>
+                        <option value="micrones">Micrones</option>
+                        <option value="milimetros">Milímetros</option>
+                        <option value="centimetros">Centímetros</option>
+                        <option value="metros">Metros</option>
+                        <option value="kilometros">Kilómetros</option>
+                        <option value="pulgadas">Pulgadas</option>
+                        <option value="pies">Pies</option>
+                        <option value="yardas">Yardas</option>
+                        <option value="millas">Millas</option>
+                        <option value="millas_nauticas">Millas náuticas</option>
+                    </select>
+                    <div id="pantalla-inferior-longitudes">0</div>
+                    <select>
+                        <option value="nanometros">Nanómetros</option>
+                        <option value="micrones">Micrones</option>
+                        <option value="milimetros">Milímetros</option>
+                        <option value="centimetros">Centímetros</option>
+                        <option value="metros">Metros</option>
+                        <option value="kilometros">Kilómetros</option>
+                        <option value="pulgadas">Pulgadas</option>
+                        <option value="pies">Pies</option>
+                        <option value="yardas">Yardas</option>
+                        <option value="millas">Millas</option>
+                        <option value="millas_nauticas">Millas náuticas</option>
+                    </select>
+                    <label id="casiIgual">Casi igual a</label>
+                    <div id="otrasConversiones">dsaf 2.2m &nbsp;&nbsp;&nbsp;&nbsp; 2.5 kilometros</div>
+                </div>
+
+                <div id="botones-longitud">
+                    <div></div>
+                    <div id="CE-len" class="boton">CE</div>
+                    <div id="delete-len" class="boton">⌫</div>
+                    <div id="siete-len" class="boton">7</div>
+                    <div id="ocho-len" class="boton">8</div>
+                    <div id="nueve-len" class="boton">9</div>
+                    <div id="cuatro-len" class="boton">4</div>
+                    <div id="cinco-len" class="boton">5</div>
+                    <div id="seis-len" class="boton">6</div>
+                    <div id="uno-len" class="boton">1</div>
+                    <div id="dos-len" class="boton">2</div>
+                    <div id="tres-len" class="boton">3</div>
+                    <div id="puntoDecimal-len" class="boton">.</div>
+                    <div id="cero-len" class="boton">0</div>
+                    <div id="igual-len" class="boton-derecho">=</div>
+                </div>
             </div>
 
     </section>
