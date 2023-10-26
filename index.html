@@ -124,7 +124,7 @@
             <div class="screen" id="calculadoraLongitudes">
                 <div id="pantalla-calculadora">
                     <div id="pantalla-superior-longitudes">0</div>
-                    <select>
+                    <select id="valorInicial" onchange="convertirLongitudes()">
                         <option value="nanometros">Nanómetros</option>
                         <option value="micrones">Micrones</option>
                         <option value="milimetros">Milímetros</option>
@@ -138,7 +138,7 @@
                         <option value="millas_nauticas">Millas náuticas</option>
                     </select>
                     <div id="pantalla-inferior-longitudes">0</div>
-                    <select>
+                    <select id="valorFinal" onchange="convertirLongitudes()">
                         <option value="nanometros">Nanómetros</option>
                         <option value="micrones">Micrones</option>
                         <option value="milimetros">Milímetros</option>
@@ -151,8 +151,8 @@
                         <option value="millas">Millas</option>
                         <option value="millas_nauticas">Millas náuticas</option>
                     </select>
-                    <label id="casiIgual">Casi igual a</label>
-                    <div id="otrasConversiones">dsaf 2.2m &nbsp;&nbsp;&nbsp;&nbsp; 2.5 kilometros</div>
+                    <label id="casiIgual"></label>
+                    <div id="otrasConversiones"></div>
                 </div>
 
                 <div id="botones-longitud">
@@ -170,7 +170,6 @@
                     <div id="tres-len" class="boton">3</div>
                     <div id="puntoDecimal-len" class="boton">.</div>
                     <div id="cero-len" class="boton">0</div>
-                    <div id="igual-len" class="boton-derecho">=</div>
                 </div>
             </div>
 

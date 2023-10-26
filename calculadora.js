@@ -7,6 +7,8 @@ const pantallaSuperiorLongitud = document.getElementById(
 const pantallaInferiorLongitud = document.getElementById(
   "pantalla-inferior-longitudes"
 );
+const valorInicial = document.getElementById("valorInicial");
+const valorFinal = document.getElementById("valorFinal");
 document.getElementById("x2").addEventListener("click", elevarAlCuadrado);
 document.getElementById("x3").addEventListener("click", elevarAlCubo);
 document.getElementById("xy").addEventListener("click", elevarALaPotencia);
@@ -54,9 +56,15 @@ for (let i = 0; i < numeros.length; i++) {
 }
 
 // Agregar event listener para el punto decimal
+document.getElementById("puntoDecimal").addEventListener("click", function () {
+  agregarPuntoDecimal("screen1");
+});
+
 document
-  .getElementById("puntoDecimal")
-  .addEventListener("click", agregarPuntoDecimal);
+  .getElementById("puntoDecimal-len")
+  .addEventListener("click", function () {
+    agregarPuntoDecimal("convertLength");
+  });
 
 // Agregar event listeners para las operaciones
 for (let i = 0; i < operaciones.length; i++) {
@@ -86,8 +94,12 @@ const convertLength = document.getElementById("calculadoraLongitudes");
 const botonlongitud = document.getElementById("convert-long");
 const operacionFechas = document.getElementById("date-sum");
 opcionesFechas.addEventListener("change", mostrarOpciones);
-document.getElementById("delete").addEventListener("click", eliminar);
-document.getElementById("delete-len").addEventListener("click", eliminar);
+document.getElementById("delete").addEventListener("click", function () {
+  eliminar("screen1");
+});
+document.getElementById("delete-len").addEventListener("click", function () {
+  eliminar("convertLength");
+});
 document.getElementById("M+").addEventListener("click", mPlus);
 document.getElementById("M-").addEventListener("click", mMenos);
 document.getElementById("MS").addEventListener("click", mS);
@@ -202,17 +214,6 @@ function revisarPantalla(screen) {
         pantallaInferior.style.fontSize = "35px";
       }
       break;
-    case "convertLength":
-      if (valorPantallaInferior.length <= 6) {
-        pantallaSuperiorLongitud.style.fontSize = "70px";
-      } else if (valorPantallaInferior.length <= 8) {
-        pantallaSuperiorLongitud.style.fontSize = "65px";
-      } else if (valorPantallaInferior.length <= 10) {
-        pantallaSuperiorLongitud.style.fontSize = "55px";
-      } else {
-        pantallaSuperiorLongitud.style.fontSize = "45px";
-      }
-      break;
 
     default:
       break;
@@ -229,16 +230,23 @@ function agregarNumero(numero, screen) {
   } else if (screen == "lenScreen") {
     if (valorPantallaInferior.length < 12) {
       valorPantallaInferior += numero;
-      revisarPantalla("convertLength");
       pantallaSuperiorLongitud.innerHTML = valorPantallaInferior;
+      convertirLongitudes();
     }
   }
 }
 
-function agregarPuntoDecimal() {
-  if (valorPantallaInferior.indexOf(".") === -1) {
-    valorPantallaInferior += ".";
-    pantallaInferior.innerHTML = valorPantallaInferior;
+function agregarPuntoDecimal(screen) {
+  if (screen === "screen1") {
+    if (valorPantallaInferior.indexOf(".") === -1) {
+      valorPantallaInferior += ".";
+      pantallaInferior.innerHTML = valorPantallaInferior;
+    }
+  } else if (screen === "convertLength") {
+    if (valorPantallaInferior.indexOf(".") === -1) {
+      valorPantallaInferior += ".";
+      pantallaSuperiorLongitud.innerHTML = valorPantallaInferior;
+    }
   }
 }
 
@@ -276,12 +284,19 @@ function borrarPantalla(screen) {
     console.log("hola2");
     valorPantallaInferior = "";
     pantallaSuperiorLongitud.innerHTML = "0";
+    convertirLongitudes();
   }
 }
 
-function eliminar() {
-  valorPantallaInferior = valorPantallaInferior.slice(0, -1);
-  pantallaInferior.innerHTML = valorPantallaInferior;
+function eliminar(screen) {
+  if (screen === "screen1") {
+    valorPantallaInferior = valorPantallaInferior.slice(0, -1);
+    pantallaInferior.innerHTML = valorPantallaInferior;
+  } else if (screen === "convertLength") {
+    valorPantallaInferior = valorPantallaInferior.slice(0, -1);
+    pantallaSuperiorLongitud.innerHTML = valorPantallaInferior;
+    convertirLongitudes();
+  }
 }
 
 function reiniciarCalculadora() {
@@ -520,5 +535,68 @@ function diferenciaFechas() {
     resultado.innerHTML =
       diffAños + " años, " + diffMeses + " meses, " + diffDias + " días";
     resultado.innerHTML += "\n" + difEnDias + " días";
+  }
+}
+
+function convertirLongitudes() {
+  let resultado;
+
+  const conversiones = {
+    nanometros: 1e-9,
+    micrones: 1e-6,
+    milimetros: 1e-3,
+    centimetros: 1e-2,
+    metros: 1,
+    kilometros: 1e3,
+    pulgadas: 0.0254,
+    pies: 0.3048,
+    yardas: 0.9144,
+    millas: 1609.344,
+    millas_nauticas: 1852,
+  };
+
+  const valorEnX = valorPantallaInferior * conversiones[valorInicial.value];
+
+  // Convertir desde metros a la unidad final
+  resultado = valorEnX / conversiones[valorFinal.value];
+
+  resultado = Number.parseFloat(resultado.toPrecision(6));
+  // Retornar el resultado de la conversión
+  pantallaInferiorLongitud.innerHTML = resultado;
+  casiIgual(resultado);
+}
+
+function casiIgual(valor, unidadFinal) {
+  const conversionesAdicionales = {
+    Yardas: valor * 1.09361,
+    Millas: valor * 0.000621371,
+    Mill_Nauticas: valor * 0.000539957,
+    pies: valor * 3.28084,
+    kilometros: valor / 1000,
+    jumbo_jets: valor * 0.0000000013,
+    manos: valor * 9.84252,
+    pulgadas: valor * 39.3701,
+  };
+
+  const otrasConversionesDiv = document.getElementById("otrasConversiones");
+  const casiIgual = document.getElementById("casiIgual");
+  otrasConversionesDiv.innerHTML = ""; // Limpiar el contenido actual
+
+  let contador = 0;
+  for (const unidad in conversionesAdicionales) {
+    if (unidad !== unidadFinal && contador < 3) {
+      const conversion = conversionesAdicionales[unidad].toPrecision(2);
+      const texto = `${conversion} ${unidad}`;
+      const conversionDiv = document.createElement("div");
+      conversionDiv.textContent = texto.substring(0, 20);
+      conversionDiv.setAttribute("id", `conversion-${contador}`); // Agregar un identificador único
+      conversionDiv.style.fontSize = "12px";
+      const espacioDiv = document.createElement("div");
+      casiIgual.innerHTML = "Casi igual a";
+      espacioDiv.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;";
+      otrasConversionesDiv.appendChild(conversionDiv);
+      otrasConversionesDiv.appendChild(espacioDiv);
+      contador++;
+    }
   }
 }
